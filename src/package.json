@@ -1,0 +1,9 @@
+{
+  "name": "testapp",
+  "version": "0.0.0",
+  "description": "testapp",
+  "main": "server.js",
+  "author": {
+    "name": "Glit"
+  }
+}
