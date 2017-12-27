@@ -9,9 +9,19 @@ console.log('process.env.RABGLITMQ =' + process.env.RABGLITMQ);
 
 subscribe('hello');
 
-http.createServer(function (req, res) {
+http.createServer(function (request, response) {
     console.log('received request!');
-    publish('hello', 'Hello world message!');
-    res.writeHead(200, { 'Content-Type': 'text/plain' });
-    res.end('Hello World\n');
+    
+    let body = [];
+    request.on('data', (chunk) => {
+      body.push(chunk);
+    }).on('end', () => {
+      body = Buffer.concat(body).toString();
+
+      publish('hello', body);
+      response.writeHead(200, { 'Content-Type': 'text/plain' });
+      response.end('Hello World\n');
+    });
+
+
 }).listen(port);
