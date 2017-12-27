@@ -8,5 +8,8 @@
   },
   "scripts": {
     "start": "node server.js"
+  },
+  "dependencies": {
+    "amqplib": "^0.3.0"
   }
 }
